@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.clock{
+			background-color: #000;
+			color:  #fff;
+			height: 90vh;
+			font-size: 30px;
+
+
+			  /*background: -webkit-linear-gradient(#eee, #333);*/
+			
+
+		}
+		#date{
+			font-size: 50px;
+			padding-top: 200px;
+			display: flex;
+			align-items: center;justify-content: center;
+			 text-shadow: 4px 8px 6px red;
+
+		}
+		#time{
+			font-size: 35px;
+			display: flex;
+			align-items: center;justify-content: center;
+			text-shadow: 4px 5px 4px red;
+		}
+
+	</style>
+	<title>Date & Time</title>
+</head>
+<body>
+<div class="clock">
+
+	<p id="date"></p>
+	<p id="time"></p>
+</div>
+
+<script>
+	
+const WEEK =["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+function updateTime() {
+	// body...
+	var now = new Date();
+	document.getElementById("time").innerText =
+	zeroPadding(now.getHours(), 2) + ":" +
+	zeroPadding(now.getMinutes(), 2) + ":" +
+	zeroPadding(now.getSeconds(),2);
+
+	// get year
+	document.getElementById("date").innerText =
+	now.getFullYear() + "-" +
+	zeroPadding(now.getMonth() +1,2) + "-" +
+	zeroPadding(now.getDate(), 2) + "" +
+	WEEK[now.getDay()]; 
+
+}
+
+updateTime();
+setInterval(updateTime,1000);
+
+
+function zeroPadding(num, digit){
+	return String(num).padStart(digit,'0');
+}
+
+
+</script>
+</body>
+</html>
